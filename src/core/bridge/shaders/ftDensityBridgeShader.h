@@ -59,10 +59,12 @@ namespace flowTools {
 										 vec2 st0 = texCoordVarying * scale0;
 										 vec2 st1 = texCoordVarying * scale1;
 										 
-										 vec4 den = texture(tex0, st0);
 										 vec4 vel = texture(tex1, st1);
+                                         float alpha = length(vel.xy); // magnitude of the velocity
+
+                                         vec4 den = texture(tex0, vec2(alpha,.2)*vec2(512.0));
+
 										 
-										 float alpha = length(vel.xy); // magnitude of the velocity
 										 den.w = alpha * speed;
 										 den.xyz *= den.w;
 										 
